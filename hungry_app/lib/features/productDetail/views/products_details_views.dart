@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry_app/core/constants/app_colors.dart';
 import 'package:hungry_app/features/productDetail/widgets/slider_widget.dart';
 import 'package:hungry_app/features/productDetail/widgets/toppings_widget.dart';
+import 'package:hungry_app/shared/costum_container.dart';
 import 'package:hungry_app/shared/costum_text.dart';
 
 class ProductsDetailsViews extends StatefulWidget {
@@ -74,6 +76,28 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
                     );
                   }),
                 ),
+              ),
+              Gap(40),
+              Row(
+                children: [
+                  Column(
+                    children: [
+                      CostumText(
+                        text: "Total",
+                        size: 18,
+                        weight: FontWeight.bold,
+                      ),
+                      CostumText(text: "\$ 180", size: 16),
+                    ],
+                  ),
+                  Spacer(),
+
+                  CostumContainer(
+                    onTap: () {},
+                    text: "Add To Cart",
+                    color: Colors.white,
+                  ),
+                ],
               ),
             ],
           ),
