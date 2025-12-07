@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:hungry_app/core/constants/app_colors.dart';
+import 'package:hungry_app/features/checkout/views/checkout_views.dart';
 import 'package:hungry_app/features/productDetail/widgets/slider_widget.dart';
 import 'package:hungry_app/features/productDetail/widgets/toppings_widget.dart';
 import 'package:hungry_app/shared/costum_container.dart';
@@ -93,7 +94,14 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
                   Spacer(),
 
                   CostumContainer(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CheckoutViews(),
+                        ),
+                      );
+                    },
                     text: "Add To Cart",
                     color: Colors.white,
                   ),

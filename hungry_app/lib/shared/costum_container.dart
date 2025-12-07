@@ -6,26 +6,33 @@ class CostumContainer extends StatelessWidget {
   const CostumContainer({
     super.key,
     required this.text,
-    required this.color,
+    this.color,
     this.onTap,
     this.size,
+    this.width,
+    this.bkColor,
   });
   final String text;
-  final Color color;
+  final Color? color;
   final Function()? onTap;
   final double? size;
+  final double? width;
+  final Color? bkColor;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
+        width: width,
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: AppColors.primary,
+          color: bkColor ?? AppColors.primary,
         ),
-        child: CostumText(text: text, color: color, size: size),
+        child: Center(
+          child: CostumText(text: text, color: color, size: size),
+        ),
       ),
     );
   }
