@@ -284,9 +284,10 @@
 // }
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hungry_app/features/cart/provider/cart_provider.dart';
+import 'package:hungry_app/features/cart/cart_provider/cart_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:hungry_app/core/constants/app_colors.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 import 'package:hungry_app/shared/costum_text.dart';
 
 class CartItemWidget extends StatelessWidget {
@@ -306,7 +307,6 @@ class CartItemWidget extends StatelessWidget {
     final cart = Provider.of<CartProvider>(context);
 
     return Card(
-      color: Colors.white,
       elevation: 5,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 10),
@@ -374,7 +374,7 @@ class CartItemWidget extends StatelessWidget {
                       borderRadius: BorderRadius.circular(width * 0.05),
                     ),
                     child: Text(
-                      "Remove",
+                      context.l10n.translate('remove'),
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: width * 0.04,

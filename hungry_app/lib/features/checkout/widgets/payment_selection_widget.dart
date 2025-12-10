@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 
 class PaymentSelectionWidget extends StatefulWidget {
   const PaymentSelectionWidget({super.key});
@@ -13,21 +14,21 @@ class _PaymentSelectionWidgetState extends State<PaymentSelectionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final width = MediaQuery.of(context).size.width;
+    final t = context.l10n;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          "Payment methods",
-          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+        Text(
+          t.translate('payment_methods'),
+          style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
 
         const SizedBox(height: 15),
 
         // 🟤 CASH ON DELIVERY
         _paymentOption(
-          title: "Cash on Delivery",
+          title: t.translate('cash_on_delivery'),
           icon: Icons.attach_money,
           method: "cash",
           dark: true,
@@ -37,8 +38,8 @@ class _PaymentSelectionWidgetState extends State<PaymentSelectionWidget> {
 
         // 🟦 VISA CARD
         _paymentOption(
-          title: "Debit card",
-          subtitle: "3566 **** **** 0505",
+          title: t.translate('debit_card'),
+          subtitle: t.translate('card_mask'),
           img: "assets/icon/profileVisa.png", // ضع لوجو فيزا
           method: "visa",
           dark: false,
@@ -56,9 +57,9 @@ class _PaymentSelectionWidgetState extends State<PaymentSelectionWidget> {
                 setState(() => saveCard = val!);
               },
             ),
-            const Text(
-              "Save card details for future payments",
-              style: TextStyle(fontSize: 14),
+            Text(
+              t.translate('save_card_details'),
+              style: const TextStyle(fontSize: 14),
             ),
           ],
         ),

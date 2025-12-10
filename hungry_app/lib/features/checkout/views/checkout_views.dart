@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry_app/core/constants/app_colors.dart';
 import 'package:hungry_app/features/checkout/widgets/payment_selection_widget.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 import 'package:hungry_app/shared/costum_container.dart';
 import 'package:hungry_app/shared/costum_text.dart';
 
@@ -14,6 +16,7 @@ class CheckoutViews extends StatefulWidget {
 class _CheckoutViewsState extends State<CheckoutViews> {
   @override
   Widget build(BuildContext context) {
+    final t = context.l10n;
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -22,7 +25,7 @@ class _CheckoutViewsState extends State<CheckoutViews> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CostumText(
-              text: "Order summary",
+              text: t.translate('order_summary'),
               weight: FontWeight.bold,
               size: 20,
             ),
@@ -35,7 +38,7 @@ class _CheckoutViewsState extends State<CheckoutViews> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CostumText(
-                        text: "Order",
+                        text: t.translate('order'),
                         size: 16,
                         color: Color(0xff7D7D7D),
                       ),
@@ -51,7 +54,7 @@ class _CheckoutViewsState extends State<CheckoutViews> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CostumText(
-                        text: "Taxes",
+                        text: t.translate('taxes'),
                         size: 16,
                         color: Color(0xff7D7D7D),
                       ),
@@ -67,7 +70,7 @@ class _CheckoutViewsState extends State<CheckoutViews> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CostumText(
-                        text: "Delivery fees",
+                        text: t.translate('delivery_fees'),
                         size: 16,
                         color: Color(0xff7D7D7D),
                       ),
@@ -85,7 +88,7 @@ class _CheckoutViewsState extends State<CheckoutViews> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CostumText(
-                        text: "Total",
+                        text: t.translate('cart_total'),
                         size: 18,
                         weight: FontWeight.bold,
                       ),
@@ -96,18 +99,17 @@ class _CheckoutViewsState extends State<CheckoutViews> {
                       ),
                     ],
                   ),
-
                   Gap(20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CostumText(
-                        text: "Estimated delivery time:",
+                        text: t.translate('estimated_delivery_time'),
                         size: 14,
                         weight: FontWeight.bold,
                       ),
                       CostumText(
-                        text: "20-30 minutes",
+                        text: t.translate('delivery_time_value'),
                         size: 14,
                         weight: FontWeight.bold,
                       ),
@@ -144,50 +146,68 @@ class _CheckoutViewsState extends State<CheckoutViews> {
         child: Row(
           children: [
             Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                CostumText(text: "Total", size: 18, weight: FontWeight.bold),
-                CostumText(text: "\$ 180", size: 16),
+                CostumText(
+                    text: t.translate('cart_total'),
+                    size: 18,
+                    weight: FontWeight.bold),
+                CostumText(text: t.translate('cart_amount'), size: 16),
               ],
             ),
-
             const Spacer(),
-
             CostumContainer(
-              text: "Pay Now",
+              text: t.translate('pay_now'),
               color: Colors.white,
               onTap: () {
                 showDialog(
                   context: context,
                   builder: (context) => Dialog(
+                    backgroundColor: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          CostumText(
-                            text: "Success",
-                            size: 20,
-                            weight: FontWeight.bold,
+                          Gap(20),
+                          Center(
+                            child: Icon(
+                              Icons.check_circle,
+                              color: AppColors.primary,
+                              size: 80,
+                            ),
                           ),
-                          CostumText(
-                            text: "Your order has been placed successfully",
-                            size: 16,
+                          Gap(20),
+                          Center(
+                            child: CostumText(
+                              color: AppColors.primary,
+                              text: t.translate('success'),
+                              size: 20,
+                              weight: FontWeight.bold,
+                            ),
                           ),
-                          CostumText(
-                            text: "Thank you for your purchase",
-                            size: 16,
+                          Gap(15),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: CostumText(
+                              text: t.translate('payment_success_message'),
+                              size: 14,
+                              color: Colors.grey.shade600,
+                            ),
                           ),
-                          CostumText(
-                            text:
-                                "You will receive an email with your order details",
-                            size: 16,
+                          Gap(50),
+                          Center(
+                            child: CostumContainer(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              text: t.translate('go_back'),
+                              color: Colors.white,
+                              width: 180,
+                            ),
                           ),
-                          CostumText(
-                            text:
-                                "You will receive an email with your order details",
-                            size: 16,
-                          ),
+                          Gap(25),
                         ],
                       ),
                     ),

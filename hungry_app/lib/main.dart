@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-
+import 'package:hungry_app/provider/locale_provider.dart';
 import 'package:hungry_app/root.dart';
+import 'package:hungry_app/theme_provider/theme_provider.dart';
+import 'package:provider/provider.dart';
+import 'l10n/app_localizations.dart';
 
 void main() {
   runApp(const MyApp());
@@ -9,17 +12,27 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: AppBarTheme(color: Colors.white),
-      ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_) => LocaleProvider()),
+      ],
+      child: Builder(
+        builder: (context) {
+          final themeProvider = Provider.of<ThemeProvider>(context);
+          final localeProvider = Provider.of<LocaleProvider>(context);
 
-      debugShowCheckedModeBanner: false,
-      home: Root(),
+          return MaterialApp(
+            locale: localeProvider.locale, // ← اللغة
+            supportedLocales: AppLocalizations.supportedLocales,
+            localizationsDelegates: AppLocalizations.delegates,
+            theme: themeProvider.theme,
+            home: const Root(),
+          );
+        },
+      ),
     );
   }
 }

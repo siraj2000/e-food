@@ -82,18 +82,19 @@
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hungry_app/features/cart/provider/cart_provider.dart';
+import 'package:hungry_app/features/cart/cart_provider/cart_provider.dart';
 
 import 'package:hungry_app/features/cart/widgets/cart_item_widget.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 import 'package:hungry_app/shared/costum_container.dart';
 import 'package:hungry_app/shared/costum_text.dart';
 import 'package:provider/provider.dart';
 
 class CartView extends StatelessWidget {
-  const CartView({super.key});
-
+  CartView({super.key});
   @override
   Widget build(BuildContext context) {
+    final t = context.l10n;
     return Scaffold(
       appBar: AppBar(backgroundColor: Colors.white),
 
@@ -101,24 +102,6 @@ class CartView extends StatelessWidget {
         padding: const EdgeInsets.all(10.0),
         child: Column(
           children: [
-            /// قائمة المنتجات
-            // Expanded(
-            //   child: ListView.builder(
-            //     itemCount: 5,
-            //     physics: const BouncingScrollPhysics(),
-            //     itemBuilder: (context, index) {
-            //       return CartItemWidget(
-            //         image: "assets/test/test.png",
-            //         des: "Veggie Burger",
-            //         text: "Hamburger",
-            //         onAdd: () {
-
-            //         },
-
-            //       );
-            //     },
-            //   ),
-            // ),
             Expanded(
               child: ListView.builder(
                 itemCount: 5,
@@ -127,8 +110,8 @@ class CartView extends StatelessWidget {
                     create: (_) => CartProvider(),
                     child: CartItemWidget(
                       image: "assets/test/test.png",
-                      des: "Veggie Burger",
-                      text: "Hamburger",
+                      des: t.translate('cart_item_desc'),
+                      text: t.translate('cart_item_name'),
                     ),
                   );
                 },
@@ -146,29 +129,24 @@ class CartView extends StatelessWidget {
         height: 80,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.1),
-              blurRadius: 10,
-              offset: const Offset(0, -2),
-            ),
-          ],
-        ),
+            // color: Colors.white,
+
+            borderRadius: BorderRadius.circular(20)),
         child: Row(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                CostumText(text: "Total", size: 18, weight: FontWeight.bold),
-                CostumText(text: "\$ 180", size: 16),
+                CostumText(
+                    text: t.translate('cart_total'),
+                    size: 18,
+                    weight: FontWeight.bold),
+                CostumText(text: t.translate('cart_amount'), size: 16),
               ],
             ),
-
             const Spacer(),
-
             CostumContainer(
-              text: "Add To Cart",
+              text: t.translate('add_to_cart'),
               color: Colors.white,
               onTap: () {},
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 import 'package:hungry_app/shared/costum_container.dart';
 import 'package:hungry_app/shared/costum_text.dart';
 
@@ -8,6 +9,7 @@ class OrderHistoryViews extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final t = context.l10n;
     return Scaffold(
       appBar: AppBar(),
       body: ListView.builder(
@@ -15,7 +17,7 @@ class OrderHistoryViews extends StatelessWidget {
         padding: EdgeInsets.only(bottom: 120, top: 10),
         itemBuilder: (context, index) {
           return Card(
-            color: Colors.white,
+            //color: Colors.white,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
               child: Column(
@@ -31,16 +33,15 @@ class OrderHistoryViews extends StatelessWidget {
                           // CostumText(text: "Veggie Burger"),
                         ],
                       ),
-
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           CostumText(
-                            text: "Hamburger",
+                            text: t.translate('cart_item_name'),
                             weight: FontWeight.bold,
                           ),
-                          CostumText(text: "QTY: 3 "),
-                          CostumText(text: "Price : 20\$"),
+                          CostumText(text: "${t.translate('qty')}: 3 "),
+                          CostumText(text: "${t.translate('price')} : 20\$"),
                         ],
                       ),
                     ],
@@ -48,7 +49,7 @@ class OrderHistoryViews extends StatelessWidget {
                   Gap(20),
                   CostumContainer(
                     bkColor: Colors.grey.shade400,
-                    text: "Re Order ",
+                    text: t.translate('re_order'),
                     width: double.infinity,
                   ),
                   Gap(20),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hungry_app/shared/costum_text.dart';
+import 'package:hungry_app/theme_provider/theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class CardItem extends StatefulWidget {
   const CardItem({
@@ -18,10 +20,11 @@ class CardItem extends StatefulWidget {
 
 class _CardItemState extends State<CardItem> {
   bool isLike = false;
+  bool isDark = false;
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<ThemeProvider>(context);
     return Card(
-      color: Colors.white,
       elevation: 3,
       child: Padding(
         padding: const EdgeInsets.all(10.0),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hungry_app/core/constants/app_colors.dart';
 import 'package:hungry_app/features/checkout/views/checkout_views.dart';
 import 'package:hungry_app/features/productDetail/widgets/slider_widget.dart';
 import 'package:hungry_app/features/productDetail/widgets/toppings_widget.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 import 'package:hungry_app/shared/costum_container.dart';
 import 'package:hungry_app/shared/costum_text.dart';
 
@@ -18,9 +18,9 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
   double value = 0.0;
   @override
   Widget build(BuildContext context) {
+    final t = context.l10n;
     return Scaffold(
       appBar: AppBar(),
-
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: SingleChildScrollView(
@@ -37,7 +37,10 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
                 value: value,
               ),
               Gap(40),
-              CostumText(text: "Toppings", size: 18, weight: FontWeight.bold),
+              CostumText(
+                  text: t.translate('toppings'),
+                  size: 18,
+                  weight: FontWeight.bold),
               Gap(10),
               SingleChildScrollView(
                 clipBehavior: Clip.none,
@@ -57,7 +60,7 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
               ),
               Gap(40),
               CostumText(
-                text: "Side options",
+                text: t.translate('side_options'),
                 size: 18,
                 weight: FontWeight.bold,
               ),
@@ -84,7 +87,7 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
                   Column(
                     children: [
                       CostumText(
-                        text: "Total",
+                        text: t.translate('cart_total'),
                         size: 18,
                         weight: FontWeight.bold,
                       ),
@@ -92,7 +95,6 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
                     ],
                   ),
                   Spacer(),
-
                   CostumContainer(
                     onTap: () {
                       Navigator.push(
@@ -102,7 +104,7 @@ class _ProductsDetailsViewsState extends State<ProductsDetailsViews> {
                         ),
                       );
                     },
-                    text: "Add To Cart",
+                    text: t.translate('add_to_cart'),
                     color: Colors.white,
                   ),
                 ],

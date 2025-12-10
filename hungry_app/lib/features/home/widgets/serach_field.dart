@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 
 class SerachField extends StatelessWidget {
   const SerachField({super.key});
@@ -13,7 +14,7 @@ class SerachField extends StatelessWidget {
       child: TextField(
         decoration: InputDecoration(
           prefixIcon: const Icon(Icons.search),
-          hintText: "Search...",
+          hintText: context.l10n.translate('search'),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
             borderSide: const BorderSide(color: Colors.white),

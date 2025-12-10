@@ -65,6 +65,7 @@ import 'package:hungry_app/features/auth/views/profile_view.dart';
 import 'package:hungry_app/features/cart/views/cart_view.dart';
 import 'package:hungry_app/features/home/views/home_view.dart';
 import 'package:hungry_app/features/orderHistory/views/order_history_views.dart';
+import 'package:hungry_app/l10n/app_localizations.dart';
 
 class Root extends StatefulWidget {
   const Root({super.key});
@@ -93,6 +94,7 @@ class _RootState extends State<Root> {
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final t = context.l10n;
 
     return Scaffold(
       body: PageView(
@@ -103,7 +105,6 @@ class _RootState extends State<Root> {
         },
         children: screens,
       ),
-
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: isDark ? Colors.grey.shade900 : AppColors.primary,
@@ -128,7 +129,7 @@ class _RootState extends State<Root> {
 
           type: BottomNavigationBarType.fixed,
           elevation: 0,
-          backgroundColor: AppColors.primary,
+          // backgroundColor: AppColors.primary,
 
           selectedItemColor: Colors.white,
           unselectedItemColor: isDark ? Colors.white70 : Colors.grey.shade600,
@@ -136,22 +137,22 @@ class _RootState extends State<Root> {
           selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
           unselectedLabelStyle: TextStyle(fontWeight: FontWeight.w500),
 
-          items: const [
+          items: [
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.home),
-              label: "Home",
+              label: t.translate('nav_home'),
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.cart),
-              label: "Cart",
+              label: t.translate('nav_cart'),
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.local_restaurant),
-              label: "Orders",
+              label: t.translate('nav_orders'),
             ),
             BottomNavigationBarItem(
               icon: Icon(CupertinoIcons.person_circle),
-              label: "Profile",
+              label: t.translate('nav_profile'),
             ),
           ],
         ),
